@@ -1,8 +1,24 @@
 # Marketplace Analytics Platform
 
+[![CI](https://github.com/Arbitr3103/marketplace-analytics-platform/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Arbitr3103/marketplace-analytics-platform/actions/workflows/ci.yml)
+
 A sanitized portfolio edition of a production-used marketplace analytics and automation workflow.
 
-The private operational system supports 50 stores and more than 30,000 SKUs. Nightly data collection, reporting, dashboards, and pricing checks reduced daily analysis from several hours to approximately 20-30 minutes. This public edition keeps the architecture and engineering patterns while using synthetic data and excluding provider credentials, customer identifiers, production infrastructure, and private business rules.
+Owner-verified operational results: the private system supports 50 stores and more than 30,000 SKUs. Nightly data collection, reporting, dashboards, and pricing checks reduced daily analysis from several hours to approximately 20-30 minutes. This public edition keeps the architecture and engineering patterns while using synthetic data and excluding provider credentials, customer identifiers, production infrastructure, and private business rules.
+
+## My role
+
+I designed and implemented the public full-stack architecture, including the
+FastAPI service boundary, typed data contracts, deterministic demo adapters,
+Next.js dashboard, idempotent sync API, automated tests, Docker setup, and CI.
+The operational source integrations and business rules remain private.
+
+## Current status
+
+- Portfolio edition: runnable locally without credentials or customer data
+- Verification: backend tests, lint, strict typing, frontend typecheck, and production build
+- Data: deterministic synthetic fixtures only
+- Deliberate boundary: authentication, production infrastructure, and provider workers are not represented as part of this public demo
 
 ## Stack
 
@@ -26,6 +42,17 @@ FastAPI REST API ----> Analytics service ----> PostgreSQL repository
 ```
 
 The application uses explicit repository, cache, and queue protocols. Tests inject in-memory adapters, while Docker Compose uses PostgreSQL and Redis adapters.
+
+## Engineering decisions
+
+- **Idempotency at the API boundary:** repeated sync requests with the same key do not enqueue duplicate work.
+- **Ports around infrastructure:** domain and service code depend on protocols, so tests do not need PostgreSQL or Redis mocks that hide application behavior.
+- **Safe portfolio extraction:** synthetic data preserves the architecture without publishing provider credentials, customer records, or private business rules.
+- **Explicit demo mode:** the default runnable path does not silently fall back to production integrations.
+
+## AI-assisted engineering
+
+AI tools were used for bounded research, review, test ideation, and implementation assistance. Architecture choices, security boundaries, acceptance criteria, and final verification remain human-reviewed and owner-approved.
 
 ## API
 
@@ -86,4 +113,4 @@ npm run build
 
 ## Author
 
-[Vladimir Bragin](https://github.com/Arbitr3103) - Full-Stack Developer
+[Vladimir Bragin](https://github.com/Arbitr3103) - Full-Stack & Automation Engineer
