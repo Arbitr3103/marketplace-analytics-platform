@@ -6,6 +6,12 @@ A sanitized portfolio edition of a production-used marketplace analytics and aut
 
 Owner-verified operational results: the private system supports 50 stores and more than 30,000 SKUs. Nightly data collection, reporting, dashboards, and pricing checks reduced daily analysis from several hours to approximately 20-30 minutes. This public edition keeps the architecture and engineering patterns while using synthetic data and excluding provider credentials, customer identifiers, production infrastructure, and private business rules.
 
+## Demo dashboard
+
+![Marketplace Analytics Platform dashboard with deterministic synthetic data](./output/playwright/marketplace-dashboard.png)
+
+Captured from the locally running Next.js and FastAPI demo. Every displayed value comes from deterministic synthetic fixtures; no customer or provider data is included.
+
 ## My role
 
 I designed and implemented the public full-stack architecture, including the
@@ -16,7 +22,7 @@ The operational source integrations and business rules remain private.
 ## Current status
 
 - Portfolio edition: runnable locally without credentials or customer data
-- Verification: backend tests, lint, strict typing, frontend typecheck, and production build
+- Verification: latest backend and frontend CI pass on `main`; local tests, lint, strict typing, typecheck, and production build are reproducible from the commands below
 - Data: deterministic synthetic fixtures only
 - Deliberate boundary: authentication, production infrastructure, and provider workers are not represented as part of this public demo
 
